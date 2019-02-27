@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
-require('./routes/apiRoutes.js')(app);
+//require('./routes/apiRoutes.js')(app);
 
 const db = require('./models');
 
