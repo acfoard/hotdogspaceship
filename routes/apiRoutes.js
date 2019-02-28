@@ -9,28 +9,39 @@ checkAuth = require('../check-auth');
 
 module.exports = function(app){
   app.post('/api/signup', (req, res, next) =>{
-    bcrypt.hash(req.body.password, 10, (err, hash) => {
-      if (err) {
-        return res.status(500).json({
-          error :err
-        });
-      } else {
-        const user = {
-          username: req.body.username,
-          password: hash
-        }
-        db.user.create(user)
-        .then(function(dbUser) {
-          res.json(dbUser);
+    db.user.findOne({where: {username: req.body.username}})
+    .then(dbUser =>{
+      if(!dbUser){
+        bcrypt.hash(req.body.password, 10, (err, hash) => {
+          if (err) {
+            return res.status(500).json({
+              error :err
+            });
+          } else {
+            const user = {
+              username: req.body.username,
+              password: hash
+            }
+            db.user.create(user)
+            .then(function(dbUser) {
+              res.json(dbUser);
+            })
+            .catch(err => {
+              console.log(err);
+              res.status(500).json({
+                error: err
+              });
+            });
+          }
+        }); 
+      } if (dbUser) {
+        return res.status(400).json({
+          message: "username already exists"
         })
-        .catch(err => {
-          console.log(err);
-          res.status(500).json({
-            error: err
-          });
-        });
       }
-    }); 
+     } 
+    )
+
   });
 
   app.post('/api/login', (req, res, next) =>{
@@ -81,7 +92,7 @@ module.exports = function(app){
     })
     .catch(err => {
       res.status(500).json({
-        err: err
+        error: err
       });
     })
   })
@@ -161,7 +172,7 @@ module.exports = function(app){
             }).catch(function (error) {
                 res.json({ error: error });
             });
-    });Ï
+    });
 
     // POST ROUTES
     app.post('/api/users', function (req, res) {
