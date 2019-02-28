@@ -1147,3 +1147,89 @@
 </tbody>
 </table>
 <p>&nbsp;</p>
+<p>&nbsp;</p>
+<h4>/api/users/:id DELETE</h4>
+<p>Deletes a User.</p>
+<p><strong>URL:</strong> /api/users/:id</p>
+<p><strong>Verb:</strong>&nbsp;DELETE</p>
+<h3>Input</h3>
+<table>
+<tbody>
+<tr>
+<td><strong>Parameter</strong></td>
+<td><strong>Data Type</strong></td>
+<td><strong>Valid Values</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>token</td>
+<td>string</td>
+<td>string</td>
+<td>the JSON web token received when logging in</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h3>&nbsp;Output</h3>
+<p>If the call is successful you will receive a 200 OK status</p>
+<h4>/api/comments/:id DELETE</h4>
+<p>Deletes a comment in relation to a game.</p>
+<p><strong>URL:</strong> /api/comments/:id</p>
+<p><strong>Verb:</strong>&nbsp;DELETE</p>
+<h3>Input</h3>
+<table>
+<tbody>
+<tr>
+<td><strong>Parameter</strong></td>
+<td><strong>Data Type</strong></td>
+<td><strong>Valid Values</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>int</td>
+<td>the ID of the comment to be deleted</td>
+</tr>
+<tr>
+<td>token</td>
+<td>string</td>
+<td>string</td>
+<td>the JSON web token received when logging in</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h3>&nbsp;Output</h3>
+<p>If the call is successful you will receive a 200 OK status</p>
+<p>&nbsp;</p>
+<h4>/api/ratings/:id DELETE</h4>
+<p>Deletes a number rating a game.</p>
+<p><strong>URL:</strong> /api/ratings/:id</p>
+<p><strong>Verb:</strong>&nbsp;DELETE</p>
+<h3>Input</h3>
+<table>
+<tbody>
+<tr>
+<td><strong>Parameter</strong></td>
+<td><strong>Data Type</strong></td>
+<td><strong>Valid Values</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>int</td>
+<td>the ID of the rating to be deleted</td>
+</tr>
+<tr>
+<td>token</td>
+<td>string</td>
+<td>string</td>
+<td>the JSON web token received when logging in</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h3>&nbsp;Output</h3>
+<p>If the call is successful you will receive a 200 OK status&nbsp;&nbsp;</p>
