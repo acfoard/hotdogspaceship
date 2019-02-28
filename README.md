@@ -105,7 +105,7 @@
 </table>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h4>/api/users POST</h4>
+<h4>/api/users GET</h4>
 <p>Returns information on all users.</p>
 <p><strong>URL:</strong> /api/users</p>
 <p><strong>Verb:</strong>&nbsp;GET</p>
@@ -113,7 +113,7 @@
 <p>none</p>
 <p>&nbsp;</p>
 <h3>Output</h3>
-<p>If the username does not match an existing user you will receive a Message Response indicating the issue.&nbsp;</p>
+<p>If the username does not match an existing user you will recieve a Message Response indicating the issue.&nbsp;</p>
 <p>If the call is successful you will receive a 200 OK status and the following data returned as JSON for each user</p>
 <table>
 <tbody>
@@ -128,27 +128,27 @@
 <td>int</td>
 <td>int</td>
 <td>the database id for the user</td>
-  </tr>
-  <tr>
-  <td>username</td>
+</tr>
+<tr>
+<td>username</td>
 <td>string</td>
 <td>string</td>
 <td>the user's username</td>
-      </tr>
-  <tr>
-  <td>password</td>
+</tr>
+<tr>
+<td>password</td>
 <td>string</td>
 <td>string</td>
 <td>the user's hashed password</td>
-      </tr>
-  <tr>
-  <td>createdAt</td>
+</tr>
+<tr>
+<td>createdAt</td>
 <td>DateTime</td>
 <td>DateTime stamp</td>
 <td>the date and time stamp when this user registered</td>
-      </tr>
-  <tr>
-    <td>updateAt</td>
+</tr>
+<tr>
+<td>updateAt</td>
 <td>DateTime</td>
 <td>DateTime stamp</td>
 <td>the date and time stamp when this user was last updated</td>
@@ -156,4 +156,325 @@
 </tbody>
 </table>
 <p>&nbsp;</p>
+<h4>/api/users/:id GET</h4>
+<p>Returns information on a specific user.</p>
+<p><strong>URL:</strong> /api/users</p>
+<p><strong>Verb:</strong>&nbsp;GET</p>
+<h3>Input</h3>
+<table>
+<tbody>
+<tr>
+<td><strong>Parameter</strong></td>
+<td><strong>Data Type</strong></td>
+<td><strong>Valid Values</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>int</td>
+<td>the id of the user you are searching for</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;&nbsp;</p>
+<h3>Output</h3>
+<p>If the username does not match an existing user you will recieve a Message Response indicating the issue.&nbsp;</p>
+<p>If the call is successful you will receive a 200 OK status and the following data returned as JSON for the user</p>
+<table>
+<tbody>
+<tr>
+<td><strong>Parameter</strong></td>
+<td><strong>Data Type</strong></td>
+<td><strong>Valid Values</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>int</td>
+<td>the database id for the user</td>
+</tr>
+<tr>
+<td>username</td>
+<td>string</td>
+<td>string</td>
+<td>the user's username</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>string</td>
+<td>the user's hashed password</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>DateTime</td>
+<td>DateTime stamp</td>
+<td>the date and time stamp when this user registered</td>
+</tr>
+<tr>
+<td>updateAt</td>
+<td>DateTime</td>
+<td>DateTime stamp</td>
+<td>the date and time stamp when this user was last updated</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>/api/games GET</h4>
+<p>Returns information on all games.</p>
+<p><strong>URL:</strong> /api/games</p>
+<p><strong>Verb:</strong>&nbsp;GET</p>
+<h3>Input</h3>
+<p>none</p>
+<p>&nbsp;</p>
+<h3>Output</h3>
+<p>If the call is successful you will receive a 200 OK status and the following data returned as JSON for each game</p>
+<table>
+<tbody>
+<tr>
+<td><strong>Parameter</strong></td>
+<td><strong>Data Type</strong></td>
+<td><strong>Valid Values</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>int</td>
+<td>the database id for the game</td>
+</tr>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>string</td>
+<td>the title of the game</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>string</td>
+<td>a short description of the game</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>string</td>
+<td>the type of game</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>DateTime</td>
+<td>DateTime stamp</td>
+<td>the date and time stamp when this game was added</td>
+</tr>
+<tr>
+<td>updateAt</td>
+<td>DateTime</td>
+<td>DateTime stamp</td>
+<td>the date and time stamp when this game was last updated</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>/api/games/:id GET</h4>
+<p>Returns information on a specific game.</p>
+<p><strong>URL:</strong> /api/games/:id</p>
+<p><strong>Verb:</strong>&nbsp;GET</p>
+<h3>Input</h3>
+<table>
+<tbody>
+<tr>
+<td><strong>Parameter</strong></td>
+<td><strong>Data Type</strong></td>
+<td><strong>Valid Values</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>int</td>
+<td>the id of the game you are searching for</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;&nbsp;</p>
+<h3>Output</h3>
+<p>If the gameId does not match an existing game you will recieve a Message Response indicating the issue.&nbsp;</p>
+<p>If the call is successful you will receive a 200 OK status and the following data returned as JSON for each game</p>
+<table>
+<tbody>
+<tr>
+<td><strong>Parameter</strong></td>
+<td><strong>Data Type</strong></td>
+<td><strong>Valid Values</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>int</td>
+<td>the database id for the game</td>
+</tr>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>string</td>
+<td>the title of the game</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>string</td>
+<td>a short description of the game</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>string</td>
+<td>the type of game</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>DateTime</td>
+<td>DateTime stamp</td>
+<td>the date and time stamp when this game was added</td>
+</tr>
+<tr>
+<td>updateAt</td>
+<td>DateTime</td>
+<td>DateTime stamp</td>
+<td>the date and time stamp when this game was last updated</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>/api/comments GET</h4>
+<p>Returns information on all comments.</p>
+<p><strong>URL:</strong> /api/comments</p>
+<p><strong>Verb:</strong>&nbsp;GET</p>
+<h3>Input</h3>
+<p>none</p>
+<p>&nbsp;</p>
+<h3>Output</h3>
+<p>If the call is successful you will receive a 200 OK status and the following data returned as JSON for each comment</p>
+<table>
+<tbody>
+<tr>
+<td><strong>Parameter</strong></td>
+<td><strong>Data Type</strong></td>
+<td><strong>Valid Values</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>int</td>
+<td>the database id for the comment</td>
+</tr>
+<tr>
+<td>text</td>
+<td>string</td>
+<td>string</td>
+<td>the text of the comment</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>DateTime</td>
+<td>DateTime stamp</td>
+<td>the date and time stamp when this comment was added</td>
+</tr>
+<tr>
+<td>updateAt</td>
+<td>DateTime</td>
+<td>DateTime stamp</td>
+<td>the date and time stamp when this comment was last updated</td>
+</tr>
+<tr>
+<td>gameId</td>
+<td>int</td>
+<td>int</td>
+<td>the ID of the game on which the comment was left</td>
+</tr>
+<tr>
+<td>userId</td>
+<td>int</td>
+<td>int</td>
+<td>the ID of the user who left the comment</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>/api/comments/:id GET</h4>
+<p>Returns information on a specific comment.</p>
+<p><strong>URL:</strong> /api/comments/:id</p>
+<p><strong>Verb:</strong>&nbsp;GET</p>
+<h3>Input</h3>
+<table>
+<tbody>
+<tr>
+<td><strong>Parameter</strong></td>
+<td><strong>Data Type</strong></td>
+<td><strong>Valid Values</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>int</td>
+<td>the id of the comment you are searching for</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;&nbsp;</p>
+<h3>Output</h3>
+<p>If the gameId does not match an existing game you will recieve a Message Response indicating the issue.&nbsp;</p>
+<p>If the call is successful you will receive a 200 OK status and the following data returned as JSON for the comment</p>
+<table>
+<tbody>
+<tr>
+<td><strong>Parameter</strong></td>
+<td><strong>Data Type</strong></td>
+<td><strong>Valid Values</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>int</td>
+<td>the database id for the comment</td>
+</tr>
+<tr>
+<td>text</td>
+<td>string</td>
+<td>string</td>
+<td>the text of the comment</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>DateTime</td>
+<td>DateTime stamp</td>
+<td>the date and time stamp when this comment was added</td>
+</tr>
+<tr>
+<td>updateAt</td>
+<td>DateTime</td>
+<td>DateTime stamp</td>
+<td>the date and time stamp when this comment was last updated</td>
+</tr>
+<tr>
+<td>gameId</td>
+<td>int</td>
+<td>int</td>
+<td>the ID of the game on which the comment was left</td>
+</tr>
+<tr>
+<td>userId</td>
+<td>int</td>
+<td>int</td>
+<td>the ID of the user who left the comment</td>
+</tr>
+</tbody>
+</table>
 <p>&nbsp;</p>
