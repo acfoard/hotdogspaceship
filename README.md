@@ -113,7 +113,7 @@
 <p>none</p>
 <p>&nbsp;</p>
 <h3>Output</h3>
-<p>If the username does not match an existing user you will recieve a Message Response indicating the issue.&nbsp;</p>
+<p>If the username does not match an existing user you will receive a Message Response indicating the issue.&nbsp;</p>
 <p>If the call is successful you will receive a 200 OK status and the following data returned as JSON for each user</p>
 <table>
 <tbody>
