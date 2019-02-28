@@ -1067,7 +1067,7 @@
 <h4>/api/ratings/:id PUT</h4>
 <p>Updates a number rating a game.</p>
 <p><strong>URL:</strong> /api/ratings</p>
-<p><strong>Verb:</strong>&nbsp;POST</p>
+<p><strong>Verb:</strong>&nbsp;PUT</p>
 <h3>Input</h3>
 <table>
 <tbody>
