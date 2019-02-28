@@ -535,7 +535,7 @@
 </tbody>
 </table>
 <p>&nbsp;</p>
-<h4>/api/comments/:id GET</h4>
+<h4>/api/ratings/:id GET</h4>
 <p>Returns information on a specific rating.</p>
 <p><strong>URL:</strong> /api/ratings/:id</p>
 <p><strong>Verb:</strong>&nbsp;GET</p>
@@ -603,6 +603,135 @@
 <td>int</td>
 <td>int</td>
 <td>the ID of the user who left the rating</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h4>/api/scores GET</h4>
+<p>Returns information on all scores.</p>
+<p><strong>URL:</strong> /api/scores</p>
+<p><strong>Verb:</strong>&nbsp;GET</p>
+<h3>Input</h3>
+<p>none</p>
+<p>&nbsp;</p>
+<h3>Output</h3>
+<p>If the call is successful you will receive a 200 OK status and the following data returned as JSON for each score</p>
+<table>
+<tbody>
+<tr>
+<td><strong>Parameter</strong></td>
+<td><strong>Data Type</strong></td>
+<td><strong>Valid Values</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>int</td>
+<td>the database id for the score</td>
+</tr>
+<tr>
+<td>score</td>
+<td>int</td>
+<td>int</td>
+<td>the score the user earned on the game</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>DateTime</td>
+<td>DateTime stamp</td>
+<td>the date and time stamp when this score was added</td>
+</tr>
+<tr>
+<td>updateAt</td>
+<td>DateTime</td>
+<td>DateTime stamp</td>
+<td>the date and time stamp when this score was last updated</td>
+</tr>
+<tr>
+<td>gameId</td>
+<td>int</td>
+<td>int</td>
+<td>the ID of the game on which the score was for</td>
+</tr>
+<tr>
+<td>userId</td>
+<td>int</td>
+<td>int</td>
+<td>the ID of the user who earned the score</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>/api/scores/:id GET</h4>
+<p>Returns information on a specific score.</p>
+<p><strong>URL:</strong> /api/scores/:id</p>
+<p><strong>Verb:</strong>&nbsp;GET</p>
+<h3>Input</h3>
+<table>
+<tbody>
+<tr>
+<td><strong>Parameter</strong></td>
+<td><strong>Data Type</strong></td>
+<td><strong>Valid Values</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>int</td>
+<td>the id of the score you are searching for</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;&nbsp;</p>
+<h3>Output</h3>
+<p>If the Id does not match an existing score you will recieve a Message Response indicating the issue.&nbsp;</p>
+<p>If the call is successful you will receive a 200 OK status and the following data returned as JSON for the score</p>
+<table>
+<tbody>
+<tr>
+<td><strong>Parameter</strong></td>
+<td><strong>Data Type</strong></td>
+<td><strong>Valid Values</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>int</td>
+<td>the database id for the score</td>
+</tr>
+<tr>
+<td>score</td>
+<td>int</td>
+<td>int</td>
+<td>the score the user earned on the game</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>DateTime</td>
+<td>DateTime stamp</td>
+<td>the date and time stamp when this score was added</td>
+</tr>
+<tr>
+<td>updateAt</td>
+<td>DateTime</td>
+<td>DateTime stamp</td>
+<td>the date and time stamp when this score was last updated</td>
+</tr>
+<tr>
+<td>gameId</td>
+<td>int</td>
+<td>int</td>
+<td>the ID of the game on which the score was for</td>
+</tr>
+<tr>
+<td>userId</td>
+<td>int</td>
+<td>int</td>
+<td>the ID of the user who earned the score</td>
 </tr>
 </tbody>
 </table>
