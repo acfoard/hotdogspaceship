@@ -478,3 +478,132 @@
 </tbody>
 </table>
 <p>&nbsp;</p>
+<p>&nbsp;</p>
+<h4>/api/ratings GET</h4>
+<p>Returns information on all ratings.</p>
+<p><strong>URL:</strong> /api/ratings</p>
+<p><strong>Verb:</strong>&nbsp;GET</p>
+<h3>Input</h3>
+<p>none</p>
+<p>&nbsp;</p>
+<h3>Output</h3>
+<p>If the call is successful you will receive a 200 OK status and the following data returned as JSON for each rating</p>
+<table>
+<tbody>
+<tr>
+<td><strong>Parameter</strong></td>
+<td><strong>Data Type</strong></td>
+<td><strong>Valid Values</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>int</td>
+<td>the database id for the rating</td>
+</tr>
+<tr>
+<td>rating</td>
+<td>int</td>
+<td>int</td>
+<td>the number rating of the game</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>DateTime</td>
+<td>DateTime stamp</td>
+<td>the date and time stamp when this rating was added</td>
+</tr>
+<tr>
+<td>updateAt</td>
+<td>DateTime</td>
+<td>DateTime stamp</td>
+<td>the date and time stamp when this rating was last updated</td>
+</tr>
+<tr>
+<td>gameId</td>
+<td>int</td>
+<td>int</td>
+<td>the ID of the game on which the rating was left</td>
+</tr>
+<tr>
+<td>userId</td>
+<td>int</td>
+<td>int</td>
+<td>the ID of the user who left the rating</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>/api/comments/:id GET</h4>
+<p>Returns information on a specific rating.</p>
+<p><strong>URL:</strong> /api/ratings/:id</p>
+<p><strong>Verb:</strong>&nbsp;GET</p>
+<h3>Input</h3>
+<table>
+<tbody>
+<tr>
+<td><strong>Parameter</strong></td>
+<td><strong>Data Type</strong></td>
+<td><strong>Valid Values</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>int</td>
+<td>the id of the rating you are searching for</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;&nbsp;</p>
+<h3>Output</h3>
+<p>If the Id does not match an existing rating you will recieve a Message Response indicating the issue.&nbsp;</p>
+<p>If the call is successful you will receive a 200 OK status and the following data returned as JSON for the rating</p>
+<table>
+<tbody>
+<tr>
+<td><strong>Parameter</strong></td>
+<td><strong>Data Type</strong></td>
+<td><strong>Valid Values</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>int</td>
+<td>the database id for the rating</td>
+</tr>
+<tr>
+<td>rating</td>
+<td>int</td>
+<td>int</td>
+<td>the number rating of the game</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>DateTime</td>
+<td>DateTime stamp</td>
+<td>the date and time stamp when this rating was added</td>
+</tr>
+<tr>
+<td>updateAt</td>
+<td>DateTime</td>
+<td>DateTime stamp</td>
+<td>the date and time stamp when this rating was last updated</td>
+</tr>
+<tr>
+<td>gameId</td>
+<td>int</td>
+<td>int</td>
+<td>the ID of the game on which the rating was left</td>
+</tr>
+<tr>
+<td>userId</td>
+<td>int</td>
+<td>int</td>
+<td>the ID of the user who left the rating</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
