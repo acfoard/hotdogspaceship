@@ -736,3 +736,170 @@
 </tbody>
 </table>
 <p>&nbsp;</p>
+<p>&nbsp;</p>
+<h4>/api/comments POST</h4>
+<p>Records a comment in relation to a game.</p>
+<p><strong>URL:</strong> /api/comments</p>
+<p><strong>Verb:</strong>&nbsp;POST</p>
+<h3>Input</h3>
+<table>
+<tbody>
+<tr>
+<td><strong>Parameter</strong></td>
+<td><strong>Data Type</strong></td>
+<td><strong>Valid Values</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>text</td>
+<td>string</td>
+<td>string</td>
+<td>the text of the comment</td>
+</tr>
+<tr>
+<td>gameId</td>
+<td>int</td>
+<td>int</td>
+<td>the ID of the game for which the comment is being left.</td>
+</tr>
+<tr>
+<td>token</td>
+<td>string</td>
+<td>string</td>
+<td>the JSON web token received when logging in</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h3>&nbsp;Output</h3>
+<p>If the call is successful you will receive a 200 OK status and the following data returned as JSON for posted comment</p>
+<table>
+<tbody>
+<tr>
+<td><strong>Parameter</strong></td>
+<td><strong>Data Type</strong></td>
+<td><strong>Valid Values</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>int</td>
+<td>the database id for the score</td>
+</tr>
+<tr>
+<td>text</td>
+<td>string</td>
+<td>string</td>
+<td>the text of the comment</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>DateTime</td>
+<td>DateTime stamp</td>
+<td>the date and time stamp when this comment was added</td>
+</tr>
+<tr>
+<td>updateAt</td>
+<td>DateTime</td>
+<td>DateTime stamp</td>
+<td>the date and time stamp when this comment was last updated</td>
+</tr>
+<tr>
+<td>gameId</td>
+<td>int</td>
+<td>int</td>
+<td>the ID of the game for which the comment was recorded</td>
+</tr>
+<tr>
+<td>userId</td>
+<td>int</td>
+<td>int</td>
+<td>the ID of the user who left the comment</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>/api/ratings POST</h4>
+<p>Records a number rating a game.</p>
+<p><strong>URL:</strong> /api/ratings</p>
+<p><strong>Verb:</strong>&nbsp;POST</p>
+<h3>Input</h3>
+<table>
+<tbody>
+<tr>
+<td><strong>Parameter</strong></td>
+<td><strong>Data Type</strong></td>
+<td><strong>Valid Values</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>rating</td>
+<td>int</td>
+<td>int</td>
+<td>the rating of the game</td>
+</tr>
+<tr>
+<td>gameId</td>
+<td>int</td>
+<td>int</td>
+<td>the ID of the game for which the rating is being left.</td>
+</tr>
+<tr>
+<td>token</td>
+<td>string</td>
+<td>string</td>
+<td>the JSON web token received when logging in</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h3>&nbsp;Output</h3>
+<p>If the call is successful you will receive a 200 OK status and the following data returned as JSON for posted comment</p>
+<table>
+<tbody>
+<tr>
+<td><strong>Parameter</strong></td>
+<td><strong>Data Type</strong></td>
+<td><strong>Valid Values</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>int</td>
+<td>the database id for the rating</td>
+</tr>
+<tr>
+<td>rating</td>
+<td>string</td>
+<td>string</td>
+<td>the number rating</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>DateTime</td>
+<td>DateTime stamp</td>
+<td>the date and time stamp when this rating was added</td>
+</tr>
+<tr>
+<td>updateAt</td>
+<td>DateTime</td>
+<td>DateTime stamp</td>
+<td>the date and time stamp when this rating was last updated</td>
+</tr>
+<tr>
+<td>gameId</td>
+<td>int</td>
+<td>int</td>
+<td>the ID of the game for which the rating was recorded</td>
+</tr>
+<tr>
+<td>userId</td>
+<td>int</td>
+<td>int</td>
+<td>the ID of the user who left the rating</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
