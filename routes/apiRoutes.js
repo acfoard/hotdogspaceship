@@ -49,12 +49,14 @@ module.exports = function(app){
         }
         if (result) {
           const token = jwt.sign({
-            username: db.user.username
+            username: db.user.username,
+            userid: db.user.id
           }, 
           process.env.JWT_KEY,
           {
             expiresIn: "1hr"
-          } )
+          } );
+        //   sessionStorage.setItem('Authorization', token);   
           return res.status(200).json({
             message: 'Auth successful',
             token: token
@@ -78,12 +80,7 @@ module.exports = function(app){
     console.log('success');
     res.send({
       message: 'Success'
-    })
-    .catch(err => {
-      res.status(500).json({
-        err: err
-      });
-    })
+    });
   })
 
     // GET ROUTES
@@ -161,7 +158,7 @@ module.exports = function(app){
             }).catch(function (error) {
                 res.json({ error: error });
             });
-    });Ï
+    });
 
     // POST ROUTES
     app.post('/api/users', function (req, res) {
