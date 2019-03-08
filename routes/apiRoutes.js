@@ -8,6 +8,7 @@ checkAuth = require('../check-auth');
 //signup and login
 
 module.exports = function(app){
+<<<<<<< HEAD
   app.post('/api/signup', (req, res, next) =>{
     bcrypt.hash(req.body.password, 10, (err, hash) => {
       if (err) {
@@ -83,6 +84,8 @@ module.exports = function(app){
     });
   })
 
+=======
+>>>>>>> 67866ab6de6fc8b78e0c1f3de9c6fce89a466bf6
     // GET ROUTES
     app.get('/api/users', function (req, res) {
         db.user.findAll({}).then(function (data) {
@@ -91,7 +94,7 @@ module.exports = function(app){
             res.json({ error: error });
         });
     });
-    app.get('/api/users/:id', function (req, res) {
+    app.get('/api/users/:id', checkAuth, function (req, res) {
         db.user.findOne({ where: { id: req.params.id } })
             .then(function (data) {
                 res.json(data);
@@ -114,14 +117,14 @@ module.exports = function(app){
                 res.json({ error: error });
             });
     });
-    app.get('/api/comments', function (req, res) {
+    app.get('/api/comments', checkAuth,  function (req, res) {
         db.comments.findAll({}).then(function (data) {
             res.json(data)
         }).catch(function (error) {
             res.json({ error: error });
         });
     });
-    app.get('/api/comments/:id', function (req, res) {
+    app.get('/api/comments/:id', checkAuth,  function (req, res) {
         db.comments.findOne({ where: { id: req.params.id } })
             .then(function (data) {
                 res.json(data);
@@ -129,14 +132,14 @@ module.exports = function(app){
                 res.json({ error: error });
             });
     });
-    app.get('/api/ratings', function (req, res) {
+    app.get('/api/ratings', checkAuth,  function (req, res) {
         db.ratings.findAll({}).then(function (data) {
             res.json(data)
         }).catch(function (error) {
             res.json({ error: error });
         });
     });
-    app.get('/api/ratings/:id', function (req, res) {
+    app.get('/api/ratings/:id', checkAuth,  function (req, res) {
         db.ratings.findOne({ where: { id: req.params.id } })
             .then(function (data) {
                 res.json(data);
@@ -144,14 +147,14 @@ module.exports = function(app){
                 res.json({ error: error });
             });
     });
-    app.get('/api/scores', function (req, res) {
+    app.get('/api/scores', checkAuth,  function (req, res) {
         db.scores.findAll({}).then(function (data) {
             res.json(data)
         }).catch(function (error) {
             res.json({ error: error });
         });
     });
-    app.get('/api/scores/:id', function (req, res) {
+    app.get('/api/scores/:id', checkAuth,  function (req, res) {
         db.scores.findOne({ where: { id: req.params.id } })
             .then(function (data) {
                 res.json(data);
@@ -161,13 +164,82 @@ module.exports = function(app){
     });
 
     // POST ROUTES
-    app.post('/api/users', function (req, res) {
-        db.user.create(req.body).then(function (data) {
-            res.json(data);
-        }).catch(function (error) {
-            res.json({ error: error })
+
+    app.post('/api/user/signup', (req, res, next) =>{
+        db.user.findOne({where: {username: req.body.username}})
+        .then(dbUser =>{
+          if(!dbUser){
+            bcrypt.hash(req.body.password, 10, (err, hash) => {
+              if (err) {
+                return res.status(500).json({
+                  error :err
+                });
+              } else {
+                const user = {
+                  username: req.body.username,
+                  password: hash
+                }
+                db.user.create(user)
+                .then(function(dbUser) {
+                  res.json(dbUser);
+                })
+                .catch(err => {
+                  console.log(err);
+                  res.status(500).json({
+                    error: err
+                  });
+                });
+              }
+            }); 
+          } if (dbUser) {
+            return res.status(400).json({
+              message: "username already exists"
+            })
+          }
+         } 
+        )
+      });
+    
+      app.post('/api/user/login', (req, res, next) =>{
+        db.user.findOne({where: {username: req.body.username}})
+        .then(dbUser =>{
+          if(!dbUser){
+            res.status(401).json({
+              message: 'Auth failed'
+            });
+          } 
+          bcrypt.compare(req.body.password, dbUser.password, (err, result) => {
+            if (err) {
+              res.status(401).json({
+                message: 'Auth failed'
+              });
+            }
+            if (result) {
+              const token = jwt.sign({
+                username: db.user.username
+              }, 
+              process.env.JWT_KEY,
+              {
+                expiresIn: "1hr"
+              } )
+              return res.status(200).json({
+                message: 'Auth successful',
+                token: token
+              });
+            }
+            res.status(401).json({
+              message: 'Auth failed'
+            })
+          })
+        })
+        .catch(err => {
+          console.log(err);
+          res.status(500).json({
+            error: err
+          });
         });
-    });
+      })    
+
     app.post('/api/games', function (req, res) {
         db.game.create(req.body).then(function (data) {
             res.json(data);
@@ -175,21 +247,21 @@ module.exports = function(app){
             res.json({ error: error })
         });
     });
-    app.post('/api/comments', function (req, res) {
+    app.post('/api/comments', checkAuth, function (req, res) {
         db.comments.create(req.body).then(function (data) {
             res.json(data);
         }).catch(function (error) {
             res.json({ error: error })
         });
     });
-    app.post('/api/ratings', function (req, res) {
+    app.post('/api/ratings', checkAuth, function (req, res) {
         db.ratings.create(req.body).then(function (data) {
             res.json(data);
         }).catch(function (error) {
             res.json({ error: error })
         });
     });
-    app.post('/api/scores', function (req, res) {
+    app.post('/api/scores', checkAuth, function (req, res) {
         db.scores.create(req.body).then(function (data) {
             res.json(data);
         }).catch(function (error) {
@@ -241,7 +313,7 @@ module.exports = function(app){
             res.json({ error: error });
         });
     });
-    app.delete('/api/comments/:id', function (req, res) {
+    app.delete('/api/comments/:id', checkAuth, function (req, res) {
         db.comments.destroy({
             where: { id: req.params.id }
         }).then(function () {
@@ -250,7 +322,7 @@ module.exports = function(app){
             res.json({ error: error });
         });
     });
-    app.delete('/api/ratings/:id', function (req, res) {
+    app.delete('/api/ratings/:id', checkAuth, function (req, res) {
         db.ratings.destroy({
             where: { id: req.params.id }
         }).then(function () {
