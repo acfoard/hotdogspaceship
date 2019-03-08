@@ -2,18 +2,7 @@ import React from 'react';
 
 class Game extends React.Component {
   state = {
-    red: { sound: 392
-
-    },
-    blue: { sound: 494
-
-    },
-    green: { sound: 587
-
-    },
-    violet: { sound: 659
-
-    }
+  
   }
 
   handleClick = (event) => {
