@@ -13,26 +13,24 @@ class Game extends React.Component {
   handleClick = (event) => {
     event.preventDefault();
     this.playSound(event)
-
     let playerInputLocal = this.state.playerInput.concat();
     if(!this.state.isPlayerTurn){
     } else if(this.state.isPlayerTurn){
         playerInputLocal.push(event.target.id);
         if(playerInputLocal.length === this.state.gameInput.length){
-          console.log("they're the same length");
           if((playerInputLocal.toString()) == (this.state.gameInput.toString())){
-            console.log("Continue!")
             this.setState({score: this.state.score +1})
             this.gameTurn();
           } else {
-            console.log("nope, game over");
-            $.ajax({
-              type: 'post',
-              beforeSend: function (req) {
-                req.setRequestHeader('authorization', sessionStorage.getItem('authorization'))
-              },
-              url: '/api/scores'
-            }).then((response) =>console.log(response.json))
+            let url = '/api/scores';
+            let data = `score: ${this.state.score}`
+            let config = {
+              headers: {
+                authorization: sessionStorage.getItem('authorization')
+              }
+            }
+            $.post(url, data, config)
+              .then((response) =>console.log(response.json))
             .catch((error) => {
               console.log(error.message)
             })
@@ -91,32 +89,18 @@ class Game extends React.Component {
   gameTurn = (event) => {
     this.setState({gameStart: true})
     this.setState({isPlayerTurn: false})
-    this.setState({gameStart: true})
-    console.log(`Player Turn: ${this.state.isPlayerTurn}`)
-    this.setState({isPlayerTurn: false})
-    
     this.newButtonPress();
     this.computerPressButtons()
     .then(()=>{this.setState({isPlayerTurn: true, playerInput: []})})
-    console.log(`GameInput: ${this.state.gameInput}`);
-    console.log(`Player Turn: ${this.state.isPlayerTurn}`)
-    console.log("After await");
-    console.log(`Player Turn: ${this.state.isPlayerTurn}`)
-
   }
 
 
-
   playSound(event) {
-    // console.log('sound should be played');
-    // console.log(`${event.target.value}`)
     const audioContext = new AudioContext();
     const oscillator = audioContext.createOscillator();
     const gainNode = audioContext.createGain();
     oscillator.connect(gainNode);
     gainNode.connect(audioContext.destination);
-    
-
     oscillator.type = 'sine';
     oscillator.frequency.setValueAtTime(`${event.target.value}`, audioContext.currentTime)
     oscillator.start();
