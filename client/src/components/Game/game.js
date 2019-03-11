@@ -1,4 +1,5 @@
 import React from 'react';
+import * as $ from 'axios';
 
 class Game extends React.Component {
   state = {
@@ -12,20 +13,27 @@ class Game extends React.Component {
   handleClick = (event) => {
     event.preventDefault();
     this.playSound(event)
-
     let playerInputLocal = this.state.playerInput.concat();
     if(!this.state.isPlayerTurn){
     } else if(this.state.isPlayerTurn){
         playerInputLocal.push(event.target.id);
         if(playerInputLocal.length === this.state.gameInput.length){
-          console.log("they're the same length");
           if((playerInputLocal.toString()) == (this.state.gameInput.toString())){
-            console.log("Continue!")
             this.setState({score: this.state.score +1})
             this.gameTurn();
           } else {
-            console.log("nope, game over");
-            //submit score here
+            let url = '/api/scores';
+            let data = `score: ${this.state.score}`
+            let config = {
+              headers: {
+                authorization: sessionStorage.getItem('authorization')
+              }
+            }
+            $.post(url, data, config)
+              .then((response) =>console.log(response.json))
+            .catch((error) => {
+              console.log(error.message)
+            })
             this.gameRefresh();
           }
         }
@@ -81,32 +89,18 @@ class Game extends React.Component {
   gameTurn = (event) => {
     this.setState({gameStart: true})
     this.setState({isPlayerTurn: false})
-    this.setState({gameStart: true})
-    console.log(`Player Turn: ${this.state.isPlayerTurn}`)
-    this.setState({isPlayerTurn: false})
-    
     this.newButtonPress();
     this.computerPressButtons()
     .then(()=>{this.setState({isPlayerTurn: true, playerInput: []})})
-    console.log(`GameInput: ${this.state.gameInput}`);
-    console.log(`Player Turn: ${this.state.isPlayerTurn}`)
-    console.log("After await");
-    console.log(`Player Turn: ${this.state.isPlayerTurn}`)
-
   }
 
 
-
   playSound(event) {
-    // console.log('sound should be played');
-    // console.log(`${event.target.value}`)
     const audioContext = new AudioContext();
     const oscillator = audioContext.createOscillator();
     const gainNode = audioContext.createGain();
     oscillator.connect(gainNode);
     gainNode.connect(audioContext.destination);
-    
-
     oscillator.type = 'sine';
     oscillator.frequency.setValueAtTime(`${event.target.value}`, audioContext.currentTime)
     oscillator.start();
@@ -123,11 +117,12 @@ class Game extends React.Component {
             <button onClick={this.startGame}>Yes</button>
           </div>
         ) : (
-          <div> <h2>Score: {this.state.score}</h2>
+          <div className="container"> <h2 className="score">Score: {this.state.score}</h2><div className="buttons">
             <button onClick={this.handleClick} id="1" value="392" className="button red"> </button>
             <button onClick={this.handleClick} id="2" value="494" className="button blue"> </button>
             <button onClick={this.handleClick} id="3" value="587" className="button green"> </button>
             <button onClick={this.handleClick} id="4" value="659" className="button violet"> </button>
+            </div>
           </div>) 
         }
         

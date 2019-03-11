@@ -3,7 +3,9 @@ import './App.css';
 import Login from './components/LoginPage';
 import ProfilePage from './components/ProfilePage';
 import Game from './components/Game/game'
-import { BrowserRouter, Route } from "react-router-dom";
+import GameList from './components/GamePage'
+import {BrowserRouter, Route} from "react-router-dom";
+import Comment from "./components/Comments"
 
 
 class App extends Component {
@@ -15,8 +17,11 @@ class App extends Component {
       </div>
       <BrowserRouter>
         <div>
-          <Route path="/" component={Login} />
-          <Route path="/game" component={Game} />
+
+          <Route exact path="/" component={Login} />
+          <Route path="/comments" component={Comment}/>
+          <Route path="/games" component={GameList} />
+
         </div>
       </BrowserRouter>
     </div>
