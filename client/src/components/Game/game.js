@@ -1,4 +1,5 @@
 import React from 'react';
+import * as $ from 'axios';
 
 class Game extends React.Component {
   state = {
@@ -25,7 +26,16 @@ class Game extends React.Component {
             this.gameTurn();
           } else {
             console.log("nope, game over");
-            //submit score here
+            $.ajax({
+              type: 'post',
+              beforeSend: function (req) {
+                req.setRequestHeader('authorization', sessionStorage.getItem('authorization'))
+              },
+              url: '/api/scores'
+            }).then((response) =>console.log(response.json))
+            .catch((error) => {
+              console.log(error.message)
+            })
             this.gameRefresh();
           }
         }
@@ -123,11 +133,12 @@ class Game extends React.Component {
             <button onClick={this.startGame}>Yes</button>
           </div>
         ) : (
-          <div> <h2>Score: {this.state.score}</h2>
+          <div className="container"> <h2 className="score">Score: {this.state.score}</h2><div className="buttons">
             <button onClick={this.handleClick} id="1" value="392" className="button red"> </button>
             <button onClick={this.handleClick} id="2" value="494" className="button blue"> </button>
             <button onClick={this.handleClick} id="3" value="587" className="button green"> </button>
             <button onClick={this.handleClick} id="4" value="659" className="button violet"> </button>
+            </div>
           </div>) 
         }
         
