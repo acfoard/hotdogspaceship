@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import './App.css';
 import Game from './components/Game/game'
+import Login from './components/LoginPage'
+import {BrowserRouter, Route} from "react-router-dom";
 
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <h1>Welcome HotDogSpaceShipTeam</h1>
-        <Game/>
-      </div>
+      <BrowserRouter>
+        <div>
+          <Route path="/" component={Login} />
+          <Route path="/game" component={Game} />
+        </div>
+      </BrowserRouter>
     )
   }
 }
