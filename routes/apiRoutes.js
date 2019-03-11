@@ -89,8 +89,8 @@ module.exports = function(app){
             res.json({ error: error });
         });
     });
-    app.get('/api/users/:id', checkAuth, function (req, res) {
-        db.user.findOne({ where: { id: req.params.id } })
+    app.get('/api/users/user', checkAuth, function (req, res) {
+        db.user.findOne({ where: { id: req.body.userId } })
             .then(function (data) {
                 res.json(data);
             }).catch(function (error) {
@@ -266,17 +266,17 @@ module.exports = function(app){
 
     // UPDATE ROUTES
 
-    app.put('/api/users/:id', function (req, res) {
+    app.put('/api/users/user', checkAuth, function (req, res) {
         db.user.update(
             req.body,
-            { where: { id: req.params.id } }
+            { where: { id: req.body.userId } }
         ).then(function () {
             res.json({ data });
         }).catch(function (error) {
             res.json({ error: error });
         });
     });
-    app.put('/api/comments/:id', function (req, res) {
+    app.put('/api/comments/:id', checkAuth, function (req, res) {
         db.comments.update(
             req.body,
             { where: { id: req.params.id } }
@@ -286,7 +286,7 @@ module.exports = function(app){
             res.json({ error: error });
         });
     });
-    app.put('/api/ratings/:id', function (req, res) {
+    app.put('/api/ratings/:id', checkAuth, function (req, res) {
         db.ratings.update(
             req.body,
             { where: { id: req.params.id } }
@@ -299,9 +299,9 @@ module.exports = function(app){
 
     // DELETE ROUTES
 
-    app.delete('/api/users/:id', function (req, res) {
+    app.delete('/api/users/user', checkAuth, function (req, res) {
         db.user.destroy({
-            where: { id: req.params.id }
+            where: { id: req.body.userId }
         }).then(function () {
             res.json({ success: true });
         }).catch(function (error) {
