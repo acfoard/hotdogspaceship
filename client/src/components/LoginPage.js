@@ -23,7 +23,7 @@ export default class Login extends Component {
         event.preventDefault();
         $.post('/api/user/login', { username: this.state.username, password: this.state.password })
             .then((data) => {
-                sessionStorage.setItem("token", data.data.token);
+                sessionStorage.setItem("authorization", data.data.token);
                 this.setState({ username: '', password: '' })
             })
             .catch((error) => {
@@ -48,5 +48,6 @@ export default class Login extends Component {
         
         ? <SignupForm changeHandler={this.changeHandler} SignupButton={this.SignupButton} Uservalue={this.state.username} Passvalue={this.state.password}/>
         : <LoginForm changeHandler={this.changeHandler} LoginButton={this.LoginButton} Uservalue={this.state.username} Passvalue={this.state.password} Signup={this.Signup}/>
+
     }
 }
