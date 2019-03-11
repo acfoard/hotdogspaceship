@@ -17,7 +17,7 @@ export default class Login extends Component {
         event.preventDefault();
         $.post('/api/user/login', { username: this.state.username, password: this.state.password })
             .then((data) => {
-                sessionStorage.setItem("token", data.data.token);
+                sessionStorage.setItem("authorization", data.data.token);
                 this.setState({ username: '', password: '' })
             })
             .catch((error) => {
