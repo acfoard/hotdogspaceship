@@ -15,9 +15,9 @@ const FormPage = (props) => {
                 </MDBRow>
               </div>
               <MDBCardBody className="mx-4 mt-4">
-                <MDBInput onChange ={props.changeHandler} name = "username" value={props.Uservalue}label="Your username" group type="text"/>
+                <MDBInput icon = "user" onChange ={props.changeHandler} name = "username" value={props.Uservalue}label="Enter Username" group type="text"/>
                 <MDBInput
-                  label="Your password"
+                  label="Enter password"
                   group
                   type="password"
                   validate
@@ -25,6 +25,7 @@ const FormPage = (props) => {
                   onChange={props.changeHandler}
                   value={props.Passvalue}
                   name= "password"
+                  icon="lock"
                 />
                 <div className="text-center mb-4 mt-5">
                   <MDBBtn
