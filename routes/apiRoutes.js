@@ -8,6 +8,79 @@ checkAuth = require('../check-auth');
 //signup and login
 
 module.exports = function(app){
+  app.post('/api/signup', (req, res, next) =>{
+    bcrypt.hash(req.body.password, 10, (err, hash) => {
+      if (err) {
+        return res.status(500).json({
+          error :err
+        });
+      } else {
+        const user = {
+          username: req.body.username,
+          password: hash
+        }
+        db.user.create(user)
+        .then(function(dbUser) {
+          res.json(dbUser);
+        })
+        .catch(err => {
+          console.log(err);
+          res.status(500).json({
+            error: err
+          });
+        });
+      }
+    }); 
+  });
+
+  app.post('/api/login', (req, res, next) =>{
+    db.user.findOne({where: {username: req.body.username}})
+    .then(dbUser =>{
+      if(!dbUser){
+        res.status(401).json({
+          message: 'Auth failed'
+        });
+      } 
+      bcrypt.compare(req.body.password, dbUser.password, (err, result) => {
+        if (err) {
+          res.status(401).json({
+            message: 'Auth failed'
+          });
+        }
+        if (result) {
+          const token = jwt.sign({
+            sub: dbUser.dataValues.id
+          }, 
+          process.env.JWT_KEY,
+          {
+            expiresIn: "1hr"
+          } );   
+          return res.status(200).json({
+            message: 'Auth successful',
+            token: token
+          });
+        }
+        res.status(401).json({
+          message: 'Auth failed'
+        })
+      })
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
+  })
+  
+  //dummy route that includes the checkAuth
+  app.get('/api/product', checkAuth, (req,res,next) =>{
+    console.log('success');
+    res.send({
+      message: 'Success'
+    });
+  })
+
     // GET ROUTES
     app.get('/api/users', function (req, res) {
         db.user.findAll({}).then(function (data) {
@@ -16,8 +89,8 @@ module.exports = function(app){
             res.json({ error: error });
         });
     });
-    app.get('/api/users/:id', checkAuth, function (req, res) {
-        db.user.findOne({ where: { id: req.params.id } })
+    app.get('/api/users/user', checkAuth, function (req, res) {
+        db.user.findOne({ where: { id: req.body.userId } })
             .then(function (data) {
                 res.json(data);
             }).catch(function (error) {
@@ -193,17 +266,17 @@ module.exports = function(app){
 
     // UPDATE ROUTES
 
-    app.put('/api/users/:id', function (req, res) {
+    app.put('/api/users/user', checkAuth, function (req, res) {
         db.user.update(
             req.body,
-            { where: { id: req.params.id } }
+            { where: { id: req.body.userId } }
         ).then(function () {
             res.json({ data });
         }).catch(function (error) {
             res.json({ error: error });
         });
     });
-    app.put('/api/comments/:id', function (req, res) {
+    app.put('/api/comments/:id', checkAuth, function (req, res) {
         db.comments.update(
             req.body,
             { where: { id: req.params.id } }
@@ -213,7 +286,7 @@ module.exports = function(app){
             res.json({ error: error });
         });
     });
-    app.put('/api/ratings/:id', function (req, res) {
+    app.put('/api/ratings/:id', checkAuth, function (req, res) {
         db.ratings.update(
             req.body,
             { where: { id: req.params.id } }
@@ -226,9 +299,9 @@ module.exports = function(app){
 
     // DELETE ROUTES
 
-    app.delete('/api/users/:id', function (req, res) {
+    app.delete('/api/users/user', checkAuth, function (req, res) {
         db.user.destroy({
-            where: { id: req.params.id }
+            where: { id: req.body.userId }
         }).then(function () {
             res.json({ success: true });
         }).catch(function (error) {
