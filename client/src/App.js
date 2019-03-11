@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Login from './components/LoginPage';
-import ProfilePage from './components/ProfilePage';
 import Game from './components/Game/game'
+import Login from './components/LoginPage'
 import GameList from './components/GamePage'
 import {BrowserRouter, Route} from "react-router-dom";
 import Comment from "./components/Comments"
@@ -10,11 +9,7 @@ import Comment from "./components/Comments"
 
 class App extends Component {
   render() {
-    return <div>
-      <div>
-        <Login />
-        <ProfilePage />
-      </div>
+    return (
       <BrowserRouter>
         <div>
 
@@ -24,7 +19,7 @@ class App extends Component {
 
         </div>
       </BrowserRouter>
-    </div>
+    )
   }
 }
 
