@@ -8,7 +8,6 @@ checkAuth = require('../check-auth');
 //signup and login
 
 module.exports = function(app){
-<<<<<<< HEAD
   app.post('/api/signup', (req, res, next) =>{
     bcrypt.hash(req.body.password, 10, (err, hash) => {
       if (err) {
@@ -50,14 +49,12 @@ module.exports = function(app){
         }
         if (result) {
           const token = jwt.sign({
-            username: db.user.username,
-            userid: db.user.id
+            sub: dbUser.dataValues.id
           }, 
           process.env.JWT_KEY,
           {
             expiresIn: "1hr"
-          } );
-        //   sessionStorage.setItem('Authorization', token);   
+          } );   
           return res.status(200).json({
             message: 'Auth successful',
             token: token
@@ -84,8 +81,6 @@ module.exports = function(app){
     });
   })
 
-=======
->>>>>>> 67866ab6de6fc8b78e0c1f3de9c6fce89a466bf6
     // GET ROUTES
     app.get('/api/users', function (req, res) {
         db.user.findAll({}).then(function (data) {
