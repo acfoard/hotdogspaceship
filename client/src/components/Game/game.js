@@ -13,12 +13,22 @@ class Game extends React.Component {
     event.preventDefault();
     this.playSound(event)
 
-    let playerInputLocal = [];
+    let playerInputLocal = this.state.playerInput.concat();
     if(!this.state.isPlayerTurn){
-      console.log(`GameInput: ${this.state.gameInput}`);
     } else if(this.state.isPlayerTurn){
         playerInputLocal.push(event.target.id);
-        console.log(`localArray: ${playerInputLocal}`);
+        if(playerInputLocal.length === this.state.gameInput.length){
+          console.log("they're the same length");
+          if((playerInputLocal.toString()) == (this.state.gameInput.toString())){
+            console.log("Continue!")
+            this.setState({score: this.state.score +1})
+            this.gameTurn();
+          } else {
+            console.log("nope, game over");
+            //submit score here
+            this.gameRefresh();
+          }
+        }
         this.setState({
           playerInput: [...this.state.playerInput, event.target.id]
         })
@@ -29,8 +39,6 @@ class Game extends React.Component {
 
   startGame = (event) => {
     event.preventDefault();
-    this.setState({gameStart: true})
-    this.setState({isPlayerTurn: false})
     this.gameTurn();
   }
 
@@ -60,14 +68,6 @@ class Game extends React.Component {
     })
   }
 
-  // setTimeout(() => {
-  //   this.state.gameInput.forEach(function(element, index) {
-  //     setTimeout(() => {
-  //       document.getElementById(element).click();
-  //     }, 1000*index)
-  //   })
-  // }, 50)
-
   gameRefresh = () => {
     this.setState({
       gameStart: false,
@@ -78,13 +78,16 @@ class Game extends React.Component {
   }
   
 
-  gameTurn = async (event) => {
+  gameTurn = (event) => {
+    this.setState({gameStart: true})
+    this.setState({isPlayerTurn: false})
+    this.setState({gameStart: true})
     console.log(`Player Turn: ${this.state.isPlayerTurn}`)
     this.setState({isPlayerTurn: false})
-    this.setState({playerInput: []})
+    
     this.newButtonPress();
     this.computerPressButtons()
-    .then(()=>{this.setState({isPlayerTurn: true})})
+    .then(()=>{this.setState({isPlayerTurn: true, playerInput: []})})
     console.log(`GameInput: ${this.state.gameInput}`);
     console.log(`Player Turn: ${this.state.isPlayerTurn}`)
     console.log("After await");
@@ -111,16 +114,25 @@ class Game extends React.Component {
   }
 
   render () {
+    const gameOn = this.state.gameStart;
     return(
       <div>
-        <h2>Would you like to play a game?</h2>
-        <button onClick={this.startGame}>Computer</button>
-        <button onClick={this.playerTurn}>Player</button>
-        <h2>Score: {this.state.score}</h2>
-        <button onClick={this.handleClick} id="1" value="392" className="button red"> </button>
-        <button onClick={this.handleClick} id="2" value="494" className="button blue"> </button>
-        <button onClick={this.handleClick} id="3" value="587" className="button green"> </button>
-        <button onClick={this.handleClick} id="4" value="659" className="button violet"> </button>
+        {!gameOn ? (
+          <div>
+            <h2>Would you like to play a game?</h2>
+            <button onClick={this.startGame}>Yes</button>
+          </div>
+        ) : (
+          <div> <h2>Score: {this.state.score}</h2>
+            <button onClick={this.handleClick} id="1" value="392" className="button red"> </button>
+            <button onClick={this.handleClick} id="2" value="494" className="button blue"> </button>
+            <button onClick={this.handleClick} id="3" value="587" className="button green"> </button>
+            <button onClick={this.handleClick} id="4" value="659" className="button violet"> </button>
+          </div>) 
+        }
+        
+        
+       
       </div>
     )
 
