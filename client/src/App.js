@@ -5,6 +5,7 @@ import Login from './components/LoginPage'
 import GameList from './components/GamePage'
 import {BrowserRouter, Route} from "react-router-dom";
 import Comment from "./components/Comments"
+import ProfilePage from "./components/ProfilePage"
 
 
 class App extends Component {
@@ -12,7 +13,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-
+          <Route path="/profile" component={ProfilePage} />
           <Route exact path="/" component={Login} />
           <Route path="/comments" component={Comment}/>
           <Route path="/games" component={GameList} />
