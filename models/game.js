@@ -14,7 +14,7 @@ module.exports = function(connection, Sequelize) {
       }
     });
   
-    // Add an association to our ProgrammingLanguage model
+
     game.associate = function(models) {
       game.hasMany(models.comments);
       game.hasMany(models.ratings);
