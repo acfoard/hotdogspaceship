@@ -13,6 +13,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 2em;
+  background-color: black;
 }
 
 code {
@@ -21,24 +23,74 @@ code {
 }
 
 .button{
-  color: white;
-  width: 12em;
+  color: transparent;
+  /* width: 12em; */
   height: 8em;
   border-color: black;
+  width: 0.5em;
+  box-shadow: 0 0 0 white;
+  animation: pulse 2s infinite;
+}
+
+.button:active {
+  animation: pulse 1s infinite;
+  animation-iteration-count: 1;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 white;
+  }
+  70% {
+      -webkit-box-shadow: 0 0 0 200px  white;
+  }
+  100% {
+      -webkit-box-shadow: 0 0 0 0 white;
+  }
+}
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 white;
+    box-shadow: 0 0 0 0 white;
+  }
+  70% {
+      -moz-box-shadow: 0 0 0 200px white;
+      box-shadow: 0 0 0 200px white;
+  }
+  100% {
+      -moz-box-shadow: 0 0 0 0 white;
+      box-shadow: 0 0 0 0 white;
+  }
 }
 
 .red{
-  background-color: rgba(255, 0, 0, 0.6)
+  background-color: rgba(255, 0, 0, 0.6);
+  margin: 2em;
+  border-radius: 120px;
 }
 
 .blue{
-  background-color: rgba(0, 0, 255, 0.6)
+  background-color: rgba(0, 0, 255, 0.6);
+  margin: 2em;
+  border-radius: 120px;
 }
 
 .green{
-  background-color: rgba(0, 255, 0, 0.6)
+  background-color: rgba(0, 255, 0, 0.6);
+  margin: 2em;
 }
 
 .violet{
-  background-color: rgba(160, 50, 255, 0.6)
+  background-color: rgba(160, 50, 255, 0.6);
+  margin: 2em;
+}
+
+.yellow{
+  background-color: rgba(255, 255, 0, 0.6);
+  margin: 2em;
+}
+
+.silver{
+  background-color: rgba(192, 192, 192, 0.6);
+  margin: 2em;
 }

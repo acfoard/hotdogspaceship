@@ -16,6 +16,7 @@ class App extends Component {
           <Route exact path="/" component={Login} />
           <Route path="/comments" component={Comment}/>
           <Route path="/games" component={GameList} />
+          <Route path="/game" component={Game} />
 
         </div>
       </BrowserRouter>
