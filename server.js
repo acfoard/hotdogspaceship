@@ -19,7 +19,7 @@ const db = require('./models');
 
 require('./routes/apiRoutes')(app);
 
-db.sequelize.sync().then(function () {
+db.sequelize.sync({}).then(function () {
     console.log('Database is synced!');
 
     app.listen(PORT, function () {
