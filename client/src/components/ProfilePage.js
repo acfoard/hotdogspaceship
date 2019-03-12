@@ -1,6 +1,7 @@
 import React from 'react';
 import * as $ from "axios";
-import { ListGroup } from 'mdbreact';
+import Score from"./Score";
+
 
 class ProfilePage extends React.Component {
     state = {
@@ -8,27 +9,38 @@ class ProfilePage extends React.Component {
         scores: []
     }
 
-    ViewProfile = (event) => {
-        event.preventDefault();
-        $.get('/api/users/user', {username: this.state.username, scores: this.state.scores})
+    viewProfile = () => {
+        let config = {
+            headers: {
+                authorization: sessionStorage.getItem('authorization')
+            }
+        }
+        $.get('/api/scores', config)
         .then((data) => {
-            this.setState({ username: '', scores: [] });
+            console.log(data)
+            this.setState({ scores: data.data });
         })
         .catch((error) => {
             console.log(error)
         })
     }
 
+    componentDidMount() {
+        this.viewProfile();
+    }
+
 
     render() {
         return (    
-            <div>
-                <h2>Your Profile</h2>
-                <h3>{this.state.username}</h3>
-                <ListGroup>{this.state.scores.map((_scores, i) => (
-                    <ListGroup.item key={i}>{this.state.scores}</ListGroup.item>
-                ))}
-                </ListGroup>
+            <div>  
+               {this.state.scores.map(score => (
+                   <Score 
+                   key={score.id}
+                   score={score.score}
+                   game={score.game.title}
+                   user= {score.user.username}
+                   />
+               ))}
             </div>
         )
     }

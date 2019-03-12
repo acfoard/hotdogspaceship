@@ -144,7 +144,7 @@ module.exports = function(app){
             });
     });
     app.get('/api/scores', checkAuth,  function (req, res) {
-        db.scores.findAll({}).then(function (data) {
+        db.scores.findAll({ where: { userId: req.body.userId }, include: [db.user, db.game] }).then(function (data) {
             res.json(data)
         }).catch(function (error) {
             res.json({ error: error });

@@ -31,8 +31,18 @@
     transform: rotate(360deg);
   }
 }
-.Login{
-  margin-top: 100px;
+
+.navBar {
+  background-color: #477998
+}
+
+.cardMargin {
+  margin: 5px;
+  padding: 5px
+}
+
+.playButton {
+  background-color: #C4D6B0;
 }
 .comments{
   margin: 20px;
