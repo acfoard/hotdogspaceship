@@ -14,6 +14,7 @@ const Game = (props) => {
               <b>Description:</b> {props.description}
               </MDBCardText>
                <MDBBtn addclass='playButton' href={props.id}>Play This Game</MDBBtn>
+               <MDBBtn href='/comments'>See what others are saying about this game!</MDBBtn>
             </MDBCardBody>
           </MDBCard>
         </MDBCol>

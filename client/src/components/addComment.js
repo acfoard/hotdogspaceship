@@ -8,4 +8,4 @@ const AddComment = (props) => {
     </div>
 }
 
-export default AddComment;
+export default AddComment; 
