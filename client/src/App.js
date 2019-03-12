@@ -8,7 +8,6 @@ import Comment from "./components/Comments"
 import Header from "./components/Header"
 import ProfilePage from "./components/ProfilePage"
 import {MDBContainer} from "mdbreact"
-import Game from "./components/Game/game"
 
 class App extends Component {
   render() {
