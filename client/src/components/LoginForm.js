@@ -1,10 +1,10 @@
 import React from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBInput, MDBCardBody } from 'mdbreact';
+import {  MDBRow, MDBCol, MDBBtn, MDBCard, MDBInput, MDBCardBody } from 'mdbreact';
 import { Link } from "react-router-dom";
 
 const FormPage = (props) => {
     return (
-      <MDBContainer className="Login">
+     
         <MDBRow>
           <MDBCol md="12">
             <MDBCard>
@@ -55,7 +55,7 @@ const FormPage = (props) => {
             </MDBCard>
           </MDBCol>
         </MDBRow>
-      </MDBContainer>
+
     );
   };
   

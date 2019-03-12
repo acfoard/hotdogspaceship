@@ -24,7 +24,8 @@ export default class Login extends Component {
         $.post('/api/user/login', { username: this.state.username, password: this.state.password })
             .then((data) => {
                 sessionStorage.setItem("authorization", data.data.token);
-                this.setState({ username: '', password: '' })
+                this.setState({ username: '', password: '' });
+                window.location.href = '/games';
             })
             .catch((error) => {
                 console.log(error.message)
