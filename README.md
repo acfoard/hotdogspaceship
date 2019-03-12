@@ -1,5 +1,7 @@
 # hotdogspaceship
-
+<h1>A social platform for hosting games</h1>
+<p>Designed to be a competitor to Steam, except for browser-based games.</p>
+<p>Check out your scores! Comment on games!</p>
 
 <h2>API Guide</h2>
 <h4>/api/signup POST</h4>
