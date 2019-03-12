@@ -30,7 +30,8 @@ class Game extends React.Component {
             this.gameTurn();
           } else {
             let url = '/api/scores';
-            let data = `score: ${this.state.score}`
+            let data = {'score': `${this.state.score},
+            'gameId': '1'`}
             let config = {
               headers: {
                 authorization: sessionStorage.getItem('authorization')
