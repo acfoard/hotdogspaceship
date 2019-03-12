@@ -7,6 +7,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Comment from "./components/Comments"
 import Header from "./components/Header"
 import {MDBContainer} from "mdbreact"
+import Game from "./components/Game/game"
 
 
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
             <Route exact path="/" component={Login} />
             <Route path="/comments" component={Comment} />
             <Route path="/games" component={GameList} />
+            <Route path='/1' component={Game} />
 
           </div>
         </BrowserRouter>
