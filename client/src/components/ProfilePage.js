@@ -10,7 +10,7 @@ class ProfilePage extends React.Component {
 
     ViewProfile = (event) => {
         event.preventDefault();
-        $.get('/api/user/profile', {username: this.state.username, scores: this.state.scores})
+        $.get('/api/users/user', {username: this.state.username, scores: this.state.scores})
         .then((data) => {
             this.setState({ username: '', scores: [] });
         })
@@ -23,7 +23,7 @@ class ProfilePage extends React.Component {
     render() {
         return (    
             <div>
-                <Profile ViewProfile={this.ViewProfile}/>
+                <h2>Your Profile</h2>
                 <h3>{this.state.username}</h3>
                 <ListGroup>{this.state.scores.map((_scores, i) => (
                     <ListGroup.item key={i}>{this.state.scores}</ListGroup.item>
