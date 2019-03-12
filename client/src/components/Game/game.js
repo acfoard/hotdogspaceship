@@ -7,7 +7,11 @@ class Game extends React.Component {
     isPlayerTurn : false,
     playerInput : [],
     gameInput: [],
-    score: 0
+    score: 0,
+    difficulty :[
+      {medium: false},
+      {hard: false}
+    ]
   }
 
   handleClick = (event) => {
@@ -20,10 +24,14 @@ class Game extends React.Component {
         if(playerInputLocal.length === this.state.gameInput.length){
           if((playerInputLocal.toString()) == (this.state.gameInput.toString())){
             this.setState({score: this.state.score +1})
+              if(this.state.score > 9) this.setState({difficulty: {medium: true}});
+              if(this.state.score > 19) this.setState({difficulty: {hard: true}})
+              
             this.gameTurn();
           } else {
             let url = '/api/scores';
-            let data = `score: ${this.state.score}`
+            let data = {'score': `${this.state.score},
+            'gameId': '1'`}
             let config = {
               headers: {
                 authorization: sessionStorage.getItem('authorization')
@@ -42,7 +50,6 @@ class Game extends React.Component {
         })
         console.log(`Player Input: ${this.state.playerInput}`);
       }
-    
   }
 
   startGame = (event) => {
@@ -50,10 +57,21 @@ class Game extends React.Component {
     this.gameTurn();
   }
 
-  newButtonPress = () => {
+  computerInputChoices = number => {
     this.setState({
-      gameInput: [...this.state.gameInput, Math.floor((Math.random() * 4) + 1)]
-    });
+      gameInput: [...this.state.gameInput, Math.floor((Math.random() * number) + 1)]
+    })
+  }
+
+  newButtonPress = () => {
+    if(this.state.difficulty.hard){
+      this.computerInputChoices(6);
+    } else if
+    (this.state.difficulty.medium){
+      this.computerInputChoices(5);
+    } else {
+      this.computerInputChoices(4);
+    }
   }
 
   resolveTimeOut = (index, resolve) => {
@@ -66,11 +84,11 @@ class Game extends React.Component {
   computerPressButtons = () => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        this.state.gameInput.forEach((element, index) => {
+        this.state.gameInput.forEach((button, index) => {
           setTimeout(() => {
-            document.getElementById(element).click();
+            document.getElementById(button).click();
             this.resolveTimeOut(index, resolve);
-          }, 1000*index)
+          }, 800+(index*800))
         })
       }, 50)
     })
@@ -81,11 +99,11 @@ class Game extends React.Component {
       gameStart: false,
       playerInput: [],
       gameInput: [],
-      score: 0
+      score: 0,
+      difficulty: {medium: false, hard: false}
     })
   }
   
-
   gameTurn = (event) => {
     this.setState({gameStart: true})
     this.setState({isPlayerTurn: false})
@@ -93,7 +111,6 @@ class Game extends React.Component {
     this.computerPressButtons()
     .then(()=>{this.setState({isPlayerTurn: true, playerInput: []})})
   }
-
 
   playSound(event) {
     const audioContext = new AudioContext();
@@ -118,19 +135,36 @@ class Game extends React.Component {
           </div>
         ) : (
           <div className="container"> <h2 className="score">Score: {this.state.score}</h2><div className="buttons">
-            <button onClick={this.handleClick} id="1" value="392" className="button red"> </button>
-            <button onClick={this.handleClick} id="2" value="494" className="button blue"> </button>
-            <button onClick={this.handleClick} id="3" value="587" className="button green"> </button>
-            <button onClick={this.handleClick} id="4" value="659" className="button violet"> </button>
+            <button onClick={this.handleClick} id="1" value="392" className="button red-button"/> 
+            <button onClick={this.handleClick} id="2" value="494" className="button blue-button"/>
+            <button onClick={this.handleClick} id="3" value="587" className="button green-button"/> 
+            <button onClick={this.handleClick} id="4" value="659" className="button violet-button"/>
+              {this.state.difficulty.medium ? (
+                <div>
+                  <button onClick={this.handleClick} id="5" value="" className="button yellow-button" value="740"/>
+                </div>
+              ) : (
+                null
+              )
+              }
+              {this.state.difficulty.hard ? (
+                <div>
+                  <div>
+                    <button onClick={this.handleClick} id="5" value="" className="button yellow-button" value="740"/>
+                  </div>
+                  <div>
+                    <button onClick={this.handleClick} id="6" value="" className="button silver-button" value="784"/>
+                  </div>
+                </div>
+              ) : (
+                null
+              )
+              }
             </div>
           </div>) 
         }
-        
-        
-       
       </div>
     )
-
   }
 }
 
