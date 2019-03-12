@@ -37,6 +37,7 @@ export default class Login extends Component {
         $.post('/api/user/signup', { username: this.state.username, password: this.state.password })
             .then((data) => {
                 this.setState({ username: '', password: '' });
+                window.location.href = '/';
             })
             .catch((error) => {
                 console.log(error.message)
