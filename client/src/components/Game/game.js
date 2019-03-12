@@ -49,7 +49,6 @@ class Game extends React.Component {
         })
         console.log(`Player Input: ${this.state.playerInput}`);
       }
-    
   }
 
   startGame = (event) => {
@@ -104,7 +103,6 @@ class Game extends React.Component {
     })
   }
   
-
   gameTurn = (event) => {
     this.setState({gameStart: true})
     this.setState({isPlayerTurn: false})
@@ -112,7 +110,6 @@ class Game extends React.Component {
     this.computerPressButtons()
     .then(()=>{this.setState({isPlayerTurn: true, playerInput: []})})
   }
-
 
   playSound(event) {
     const audioContext = new AudioContext();
@@ -137,13 +134,13 @@ class Game extends React.Component {
           </div>
         ) : (
           <div className="container"> <h2 className="score">Score: {this.state.score}</h2><div className="buttons">
-            <button onClick={this.handleClick} id="1" value="392" className="button red"/> 
-            <button onClick={this.handleClick} id="2" value="494" className="button blue"/>
-            <button onClick={this.handleClick} id="3" value="587" className="button green"/> 
-            <button onClick={this.handleClick} id="4" value="659" className="button violet"/>
+            <button onClick={this.handleClick} id="1" value="392" className="button red-button"/> 
+            <button onClick={this.handleClick} id="2" value="494" className="button blue-button"/>
+            <button onClick={this.handleClick} id="3" value="587" className="button green-button"/> 
+            <button onClick={this.handleClick} id="4" value="659" className="button violet-button"/>
               {this.state.difficulty.medium ? (
                 <div>
-                  <button onClick={this.handleClick} id="5" value="" className="button yellow" value="740"/>
+                  <button onClick={this.handleClick} id="5" value="" className="button yellow-button" value="740"/>
                 </div>
               ) : (
                 null
@@ -152,10 +149,10 @@ class Game extends React.Component {
               {this.state.difficulty.hard ? (
                 <div>
                   <div>
-                    <button onClick={this.handleClick} id="5" value="" className="button yellow" value="740"/>
+                    <button onClick={this.handleClick} id="5" value="" className="button yellow-button" value="740"/>
                   </div>
                   <div>
-                    <button onClick={this.handleClick} id="6" value="" className="button silver" value="784"/>
+                    <button onClick={this.handleClick} id="6" value="" className="button silver-button" value="784"/>
                   </div>
                 </div>
               ) : (
@@ -167,7 +164,6 @@ class Game extends React.Component {
         }
       </div>
     )
-
   }
 }
 
