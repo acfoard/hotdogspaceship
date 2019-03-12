@@ -113,12 +113,13 @@ module.exports = function(app){
             });
     });
     app.get('/api/comments', checkAuth,  function (req, res) {
-        db.comments.findAll({}).then(function (data) {
-            res.json(data)
-        }).catch(function (error) {
-            res.json({ error: error });
-        });
-    });
+      db.comments.findAll({include: [db.user] })
+      .then(function (data) {
+          res.json(data)
+      }).catch(function (error) {
+          res.json({ error: error });
+      });
+  });
     app.get('/api/comments/:id', checkAuth,  function (req, res) {
         db.comments.findOne({ where: { id: req.params.id } })
             .then(function (data) {
@@ -211,11 +212,11 @@ module.exports = function(app){
             }
             if (result) {
               const token = jwt.sign({
-                username: db.user.username
+                sub: dbUser.dataValues.id
               }, 
               process.env.JWT_KEY,
               {
-                expiresIn: "1hr"
+                expiresIn: "30hr"
               } )
               return res.status(200).json({
                 message: 'Auth successful',
@@ -243,6 +244,7 @@ module.exports = function(app){
         });
     });
     app.post('/api/comments', checkAuth, function (req, res) {
+      console.log(req)
         db.comments.create(req.body).then(function (data) {
             res.json(data);
         }).catch(function (error) {

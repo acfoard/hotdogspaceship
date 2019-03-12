@@ -34,3 +34,14 @@
 .Login{
   margin-top: 100px;
 }
+.comments{
+  margin: 20px;
+ 
+}
+.cardBody{
+  background-color: #477998;
+  color: white
+}
+.cardText{
+  color: white
+}
