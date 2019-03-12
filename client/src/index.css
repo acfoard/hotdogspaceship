@@ -13,6 +13,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 2em;
+  background-color: black;
 }
 
 code {
@@ -21,24 +23,99 @@ code {
 }
 
 .button{
-  color: white;
-  width: 12em;
+  color: transparent;
+  /* width: 12em; */
   height: 8em;
   border-color: black;
+  width: 0.5em;
+  box-shadow: 0 0 0 white;
+  animation: pulse 1.5s infinite;
 }
 
-.red{
-  background-color: rgba(255, 0, 0, 0.6)
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 white;
+  }
+  70% {
+      -webkit-box-shadow: 10px 10px 10px 200px  white;
+  }
+  100% {
+      -webkit-box-shadow: 0 0 0 0 white;
+  }
+}
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 white;
+    box-shadow: 0 0 0 0 white;
+  }
+  70% {
+      -moz-box-shadow: 10px 10px 10px 200px  white;
+      box-shadow: 10px 10px 10px 200px  white;
+  }
+  100% {
+      -moz-box-shadow: 0 0 0 0 white;
+      box-shadow: 0 0 0 0 white;
+  }
 }
 
-.blue{
-  background-color: rgba(0, 0, 255, 0.6)
+.button:active{
+  animation: pulse 1s;
 }
 
-.green{
-  background-color: rgba(0, 255, 0, 0.6)
+.red-button{
+  background-color: rgba(255, 0, 0, 0.6);
+  margin: 2em;
+  border-radius: 120px;
 }
 
-.violet{
-  background-color: rgba(160, 50, 255, 0.6)
+/* .redbutton:active{
+  background-color: black;
+} */
+
+.blue-button{
+  background-color: rgba(0, 0, 255, 0.6);
+  margin: 2em;
+  border-radius: 120px;
+}
+
+/* .blue-button:active{
+  background-color: black;
+} */
+
+
+.green-button{
+  background-color: rgba(0, 255, 0, 0.6);
+  margin: 2em;
+  border-radius: 120px;
+}
+.green:active{
+  background-color: black;
+}
+
+.violet-button{
+  background-color: rgba(160, 50, 255, 0.6);
+  margin: 2em;
+  border-radius: 120px;
+}
+.violet-button:active{
+  background-color: black;
+}
+
+.yellow-button{
+  background-color: rgba(255, 255, 0, 0.6);
+  margin: 2em;
+  border-radius: 120px;
+}
+.yellow:active{
+  background-color: black;
+}
+
+.silver-button{
+  background-color: rgba(192, 192, 192, 0.6);
+  margin: 2em;
+  border-radius: 120px;
+}
+.silver:active{
+  background-color: black;
 }
