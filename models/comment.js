@@ -3,7 +3,7 @@ module.exports = function(connection, Sequelize) {
       text: {
         type: Sequelize.STRING,
         allowNull: false
-      }
+      },
     });
   
     comments.associate = function(models) {
