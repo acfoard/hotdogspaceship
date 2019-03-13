@@ -38,7 +38,7 @@ code {
     -webkit-box-shadow: 0 0 0 0 white;
   }
   70% {
-      -webkit-box-shadow: 10px 10px 10px 200px  white;
+      -webkit-box-shadow: 10px 10px 10px 10px  white;
   }
   100% {
       -webkit-box-shadow: 0 0 0 0 white;
@@ -50,8 +50,8 @@ code {
     box-shadow: 0 0 0 0 white;
   }
   70% {
-      -moz-box-shadow: 10px 10px 10px 200px  white;
-      box-shadow: 10px 10px 10px 200px  white;
+      -moz-box-shadow: 10px 10px 10px 10px  white;
+      box-shadow: 10px 10px 10px 10px  white;
   }
   100% {
       -moz-box-shadow: 0 0 0 0 white;

@@ -16,6 +16,7 @@ class Comments extends React.Component {
             }
         }
         $.get('/api/comments', config).then((data) => {
+            console.log(data)
             this.setState({
                 comments: data.data
             })
@@ -37,8 +38,9 @@ class Comments extends React.Component {
                 authorization: sessionStorage.getItem('authorization'),
             }
         }
-        $.post('/api/comments', { text: this.state.newComment, gameId: 1 }, config)
+        $.post('/api/comments', { text: this.state.newComment, gameId: 1}, config)
             .then((data) => {
+                console.log(data)
                 this.renderComments()
                 this.setState({ newComment: "" })
             })
