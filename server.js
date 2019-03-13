@@ -19,7 +19,13 @@ const db = require('./models');
 
 require('./routes/apiRoutes')(app);
 
-db.sequelize.sync({}).then(function () {
+if(process.env.NODE_ENV === "production") {
+    app.get('*', (req, res) => {
+        res.sendFile(__dirname + '/client/build/index.html')
+    });
+}
+
+db.sequelize.sync().then(function () {
     console.log('Database is synced!');
 
     app.listen(PORT, function () {
