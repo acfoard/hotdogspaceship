@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "bcrypt": "^3.0.4",
+    "bcrypt": "^5.0.0",
     "cluster": "^0.7.7",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
